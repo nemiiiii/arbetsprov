@@ -11,27 +11,27 @@ df = pd.read_csv("wikipedia_300.csv", names=["Text", "Category"])
 vectorizer = CountVectorizer()
 X = vectorizer.fit_transform(df["Text"])
 
-#Det fanns 6 dubletter i datan, vi tar bort dom för ett bättre resultat
+#Det fanns 6 dubletter i datan, jag tar bort dom för ett bättre resultat
 df.drop_duplicates(subset="Text")
 
-#Säkerställ att datan tolkats korrekt
+#Säkerställer att datan tolkats korrekt
 print('Dataframe shape: ', df.shape)
 
-# Dela upp datan i tränings delar och test delar
+# Delar upp datan i tränings delar och test delar
 X_train, X_test, y_train, y_test = train_test_split(X, df["Category"], test_size=0.2, random_state=40)
 
-#Säkerställ att datan tolkats korrekt
+#Säkerställer att datan tolkats korrekt
 print(y_train.value_counts())
 print(y_test.value_counts())
 
 
-# Träna en "random forest classifier"
+# Tränar en "random forest classifier"
 rfc = RandomForestClassifier(n_estimators=100, random_state=40)
 rfc.fit(X_train, y_train)
 
-# Förutspå resultatet på testet
+# Förutspår resultatet på testet
 y_pred = rfc.predict(X_test)
 
-# Utvärdera precisionen
+# Utvärderar precisionen
 accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy:", accuracy)
