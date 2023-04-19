@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
-# Ladda in data från filen
+# Ladda in data från filen (lägg till din path till filen)
 df = pd.read_csv("wikipedia_300.csv", names=["Text", "Category"])
 
 # Vektorisera med CountVectorizer
